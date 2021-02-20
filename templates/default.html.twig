@@ -3,9 +3,9 @@
 {% block content %}
   <section class="box style2">
     <header>
-      <h2>{{ page.title }}</h2>
+      <h2>{{ page.title|raw }}</h2>
     </header>
 
-    {{ page.content }}
+    {{ page.content|raw }}
   </section>
 {% endblock %}

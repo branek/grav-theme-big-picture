@@ -778,7 +778,7 @@
 
 	#nav {
 		position: absolute;
-		right: 0.5em;
+		right: 6em;
 		top: 0;
 		height: 3em;
 		line-height: 3em;
@@ -1265,7 +1265,7 @@
 		/* Main */
 			.main {
 				&.fullscreen {
-					height: auto !important;
+					/*height: auto !important;*/
 				}
 
 				&.style1 {

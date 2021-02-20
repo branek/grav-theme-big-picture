@@ -1,0 +1,261 @@
+// Hamburger Colors
+$primary-color-light: #3085EE !default;
+$primary-color: #39454b !default;
+$dark-color: #454d5d !default;
+$light-color: #fff !default;
+
+// Gray colors
+$dark-color: #303742 !default;
+$light-color: #fff !default;
+$gray-color: lighten($dark-color, 55%) !default;
+$gray-color-dark: darken($gray-color, 30%) !default;
+$gray-color-light: lighten($gray-color, 20%) !default;
+
+// Mobile Menu Variables
+$mobile-color-main: $primary-color;
+$mobile-color-active: $primary-color;
+$mobile-color-link: $primary-color;
+$mobile-button-height: 24px;
+$mobile-button-width: 28px;
+
+// Layout
+$horiz-padding: 1rem;
+$vert-padding: 2rem 0 2rem;
+
+@import "libs/skel";
+
+@include skel-breakpoints((
+    wide: '(max-width: 1920px)',
+                           normal: '(max-width: 1680px)',
+                           narrow: '(max-width: 1280px)',
+                           narrower: '(max-width: 1000px)',
+                           mobile: '(max-width: 736px)',
+                           mobilenarrow: '(max-width: 480px)',
+));
+
+.mobile-container {
+    position: absolute;
+    //width: 100%;
+    //height: 100%;
+    top: 40%;
+    left: 0;
+    margin:  0 auto;
+    z-index: 2;
+}
+
+.mobile-logo {
+    svg, img {
+        height: 42px;
+        margin-top: .7rem;
+        margin-left: 1.4rem;
+        
+        path {
+            fill: $light-color;
+        }
+        
+    }
+}
+
+// Hamburger Menu
+.mobile-menu {
+    
+    display: none;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    
+    .header-fixed & {
+        position: fixed;
+    }
+    
+    @include breakpoint(mobile) {
+        display: block;
+    }
+    
+    .button_container {
+        position: absolute;
+        top: 0.7rem;
+        left: $horiz-padding;
+        height: $mobile-button-height;
+        width: $mobile-button-width;
+        cursor: pointer;
+        z-index: 100;
+        transition: opacity .25s ease, top 0.5s ease;
+        
+        $bar-offset: $mobile-button-height / 3;
+        
+        &.lng {
+            right: $horiz-padding;
+            padding: 20px 20px 20px 20px;
+        }
+        
+        &:hover {
+            opacity: .7;
+        }
+        
+        &.active {
+            position: fixed;
+            
+            .top {
+                transform: translateY($bar-offset) translateX(0) rotate(45deg);
+                background: $mobile-color-active;
+            }
+            .middle {
+                opacity: 0;
+                background: $mobile-color-active;
+            }
+            
+            .bottom {
+                transform: translateY(-($bar-offset)) translateX(0) rotate(-45deg);
+                background: $mobile-color-active;
+            }
+        }
+        
+        span {
+            background: $mobile-color-main;
+            border: none;
+            height: 4px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition:  all .35s ease;
+            cursor: pointer;
+            
+            &:nth-of-type(2) {
+                top: $bar-offset;
+            }
+            
+            &:nth-of-type(3) {
+                top: $bar-offset * 2;
+            }
+        }
+    }
+}
+
+.overlay {
+    position: fixed;
+    background: #FFF;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .35s, visibility .35s, height .35s;
+    
+    &.open {
+        opacity: .95;
+        visibility: visible;
+        height: 100%;
+        
+    }
+    nav {
+        
+        position: relative;
+        margin: 0 auto;
+        text-align: center;
+    }
+}
+
+.overlay-menu {
+    height: calc(100% - 90px);
+    overflow-y: scroll;
+    
+    & > .tree {
+        text-align: left;
+    }
+}
+
+
+.treemenu {
+    
+    &.treemenu-root {
+        margin: 1rem;
+    }
+    
+    li {
+        list-style: none;
+        margin: 0 0 1px;
+        padding: 5px 0;
+        line-height: 1.2rem;
+        
+        background: rgba($gray-color-dark,0.1);
+        
+        a {
+            display: block;
+            margin-left: 1.2rem;
+            font-size: 1rem;
+            
+            &:hover, &:focus, &.active {
+                color: $primary-color-light !important;
+                text-decoration: none;
+            }
+        }
+    }
+    
+    ul {
+        margin: 0 0 0 1rem;
+    }
+    
+    .toggler {
+        cursor: pointer;
+        vertical-align: top;
+        font-size: 1.1rem;
+        line-height: 1rem;
+        padding-left: 5px;
+        float: left;
+        
+        &:before {
+            display: inline-block; margin-right: 2pt;
+        }
+    }
+    
+    li.tree-empty  > .toggler {
+        opacity: 0.3; cursor: default;
+        
+        &:before {
+            content: "\2022";
+        }
+    }
+    
+    li.tree-closed > .toggler:before {
+        content: "+";
+    }
+    
+    li.tree-opened > .toggler:before {
+        content: "\2212";
+    }
+}
+
+.mobile-nav-open {
+    overflow-y: hidden;
+}
+
+.mobile-nav {
+    display: block;
+    position: relative;
+    top: 4em;   
+    font-size: 1.5em;
+    
+    ul {
+        margin: 0 auto;
+        width: 30%;
+        
+        li {
+            margin-left: 0.5em;
+            font-size: 0.9em;
+            text-align: center;
+            
+            a {
+                display: block;
+                color: inherit;
+                text-decoration: none;
+                height: 3em;
+                line-height: 3em;
+                padding: 0 0.5em 0 0.5em;
+                outline: 0;
+            }
+        }
+    }
+}

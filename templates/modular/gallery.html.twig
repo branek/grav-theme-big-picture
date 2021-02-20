@@ -11,9 +11,9 @@
 <section id="{{ page.folder|replace({'_': ''}) }}" class="main style3 primary">
     <div class="content container">
         <header>
-            <h2>{{ header.heading }}</h2>
+            <h2>{{ header.heading|raw }}</h2>
 
-            {{ content }}
+            {{ content|raw }}
         </header>
 
         {% if header.images|length > 0 %}

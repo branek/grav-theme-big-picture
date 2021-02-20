@@ -1,3 +1,7 @@
+## Fork
+
+Compatibiltiy changes to support new GRAV 1.7.x and hamburger menu for small screens
+
 # Big Picture theme for Grav CMS
 
 ![Big Picture Theme screenshot](screenshot.jpg)

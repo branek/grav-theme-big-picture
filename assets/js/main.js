@@ -231,3 +231,18 @@
 	});
 
 })(jQuery);
+
+jQuery(document).ready(function($){
+    // Responsive Menu
+    $('#toggle').click(function () {
+        $(this).toggleClass('active');
+        $('#overlay').toggleClass('open');
+        $('body').toggleClass('mobile-nav-open');
+    });
+    
+    $('#overlay').click(function () {
+        $(this).toggleClass('open');
+        $('#toggle').toggleClass('active');
+        $('body').toggleClass('mobile-nav-open');
+    });
+});
